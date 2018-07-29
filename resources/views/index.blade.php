@@ -17,7 +17,13 @@
                             </div>
                             @endforeach
                         </div>
+
+                        <div id="printAddress" style="display:none">
+                            <h1>test</h1>
+                        </div>
                     </div>
+
+
 
                     <div class="text-center" style="margin: 15px;">
                         <button id="actBtn" type="button" class="btn btn-success btn-lg" style="margin: 15px;">選擇</button>

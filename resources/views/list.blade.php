@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container">
         <div calss="raw" style="padding: 25px;">
             <a href="{{ route('lunch.item.create') }}" title="新增店家" class="btn btn-success">新增店家</a>
             @if ($message = Session::get('success'))
