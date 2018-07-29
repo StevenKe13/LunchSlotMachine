@@ -2,15 +2,9 @@
 
 @section('content')
 
-
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>修改店家</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('lunch.item.index') }}"> 返回</a>
-            </div>
+    <div class="row justify-content-md-center">
+        <div class="pull-left">
+            <h2>修改店家</h2>
         </div>
     </div>
 

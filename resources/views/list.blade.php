@@ -5,6 +5,11 @@
     <div class="container-fluid">
         <div calss="raw" style="padding: 25px;">
             <a href="{{ route('lunch.item.create') }}" title="新增店家" class="btn btn-success">新增店家</a>
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
             <div class="table-responsive" style="background-color: #eeeeee;">
                 <table class="table table-striped jambo_table bulk_action table-hover">
                     <thead>

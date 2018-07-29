@@ -11,6 +11,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <a class="btn btn-danger" href="{{ route('lunch.item.index') }}"> 取消</a>
         <button type="submit" class="btn btn-primary">送出</button>
 
         {{-- CSRF 欄位--}}
