@@ -7,6 +7,9 @@
             <div class="row">
 
                 <div class="col-sm-10 col-md-10 offset-sm-1 offset-md-1">
+
+                    <a class="btn btn-primary" href="{{ route('lunch.item.index') }}"> 店家管理</a>
+
                     <div class="well content">
                         <p>今天午餐就吃...</p>
 

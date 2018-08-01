@@ -4,6 +4,7 @@
 
     <div class="container">
         <div calss="raw" style="padding: 25px;">
+            <a class="btn btn-primary" href="{{ route('lunch.index') }}"> 返回拉霸頁</a>
             <a href="{{ route('lunch.item.create') }}" title="新增店家" class="btn btn-success">新增店家</a>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">

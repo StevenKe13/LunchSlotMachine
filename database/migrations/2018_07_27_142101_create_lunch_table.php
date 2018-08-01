@@ -13,11 +13,11 @@ class CreateLunchTable extends Migration
      */
     public function up()
     {
-        Schema::create('lunch', function (Blueprint $table) {
+        Schema::create('migo_lunch', function (Blueprint $table) {
             $table->increments('id');
             $table->string('store_name',20);
             $table->string('address',255);
-            $table->string('pic',32);
+            $table->string('menu',32);
             $table->timestamps();
         });
     }

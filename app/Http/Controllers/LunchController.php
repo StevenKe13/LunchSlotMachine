@@ -25,6 +25,8 @@ class LunchController extends Controller
         ];
 
         return view('index',$data);
+
+        
     }
 
     public function list()
