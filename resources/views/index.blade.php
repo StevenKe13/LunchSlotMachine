@@ -15,14 +15,14 @@
 
                         <div id="lunchList">
                             @foreach($lunchList as $lunch)
-                            <div class="text-center">
+                            <div class="text-center lunch_item" data-key="{{ $lunch->id }}">
                                 {{ $lunch->store_name }}
                             </div>
                             @endforeach
                         </div>
 
-                        <div id="printAddress" style="display:none">
-                            <h1>test</h1>
+                        <div id="printAddress">
+                            <h2>{{ $firstItem['address'] }}</h2>
                         </div>
                     </div>
 

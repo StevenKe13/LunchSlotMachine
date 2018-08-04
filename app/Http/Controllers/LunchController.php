@@ -17,11 +17,14 @@ class LunchController extends Controller
      */
     public function index()
     {
-        $lunchList = Lunch::all();
+//        $lunchList = Lunch::all();
+//        $lunchList = Lunch::orderBy('id')->get();
+        $lunchList = Lunch::inRandomOrder()->get();
 
         $data = [
             'pageName' => self::PAGENAME,
-            'lunchList' => $lunchList
+            'lunchList' => $lunchList,
+            'firstItem' => $lunchList[0]
         ];
 
         return view('index',$data);
@@ -138,5 +141,13 @@ class LunchController extends Controller
         Lunch::findOrFail($id)->delete();
         return redirect()->route('lunch.item.index')
             ->with('success','刪除成功');
+    }
+
+
+    public function ajaxGetAddress(Request $request){
+
+        $lunchDatas = Lunch::findOrFail( $request->id );
+
+        return json_decode($lunchDatas, true);
     }
 }

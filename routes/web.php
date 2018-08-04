@@ -19,6 +19,11 @@ Route::get('/', [
     'uses' => 'LunchController@index'
 ]);
 
+Route::post('/ajaxGetAddress', [
+    'as' => 'lunch.ajaxGetAddress',
+    'uses' => 'LunchController@ajaxGetAddress'
+]);
+
 
 Route::group([
     'prefix' => '/item',
@@ -54,4 +59,6 @@ Route::group([
         'uses' => 'LunchController@destroy'
     ]);
 });
+
+
 
