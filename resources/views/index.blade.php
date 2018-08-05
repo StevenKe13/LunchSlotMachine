@@ -16,7 +16,7 @@
                         <div id="lunchList">
                             @foreach($lunchList as $lunch)
                             <div class="text-center lunch_item" data-key="{{ $lunch->id }}">
-                                {{ $lunch->store_name }}
+                                <div class="storeName">{{ $lunch->store_name }}</div>
                             </div>
                             @endforeach
                         </div>
