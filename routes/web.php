@@ -1,63 +1,33 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-//Route::pattern('id', '[0-9]+');
+Route::pattern('id', '[0-9]+');
 
+Route::get('/', 'LunchController@index')->name('lunch.index');
 
-Route::get('/', [
-    'as' => 'lunch.index',
-    'uses' => 'LunchController@index'
-]);
-
-Route::post('/ajaxGetAddress', [
-    'as' => 'lunch.ajaxGetAddress',
-    'uses' => 'LunchController@ajaxGetAddress'
-]);
+Route::post('/ajaxGetAddress', 'LunchController@ajaxGetAddress')->name('lunch.ajaxGetAddress');
 
 
 Route::group([
     'prefix' => '/item',
 ], function () {
     // 清單頁
-    Route::get('/', [
-        'as' => 'lunch.item.index',
-        'uses' => 'LunchController@list'
-    ]);
+    Route::get('/', 'LunchController@list')->name('lunch.item.index');
+
     // 新增
-    Route::get('create', [
-        'as' => 'lunch.item.create',
-        'uses' => 'LunchController@create'
-    ]);
+    Route::get('create', 'LunchController@create')->name('lunch.item.create');
+
     // 儲存
-    Route::post('/', [
-        'as' => 'lunch.item.store',
-        'uses' => 'LunchController@store'
-    ]);
+    Route::post('/', 'LunchController@store')->name('lunch.item.store');
+
     // 編輯
-    Route::get('{id}/edit', [
-        'as' => 'lunch.item.edit',
-        'uses' => 'LunchController@edit'
-    ]);
+    Route::get('{id}/edit', 'LunchController@edit')->name('lunch.item.edit');
+
     // 更新
-    Route::patch('{id}', [
-        'as' => 'lunch.item.update',
-        'uses' => 'LunchController@update'
-    ]);
+    Route::patch('{id}', 'LunchController@update')->name('lunch.item.update');
+
     // 刪除
-    Route::delete('{id}', [
-        'as' => 'lunch.item.destroy',
-        'uses' => 'LunchController@destroy'
-    ]);
+    Route::delete('{id}', 'LunchController@destroy')->name('lunch.item.destroy');
 });
 
 
