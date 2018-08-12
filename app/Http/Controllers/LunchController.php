@@ -24,7 +24,8 @@ class LunchController extends Controller
         $data = [
             'pageName' => self::PAGENAME,
             'lunchList' => $lunchList,
-            'firstItem' => $lunchList[0]
+            'firstItem' => $lunchList[0],
+            'AA' => 'AA'
         ];
 
         return view('index',$data);
