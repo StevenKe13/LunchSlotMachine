@@ -16,6 +16,10 @@ body {
   font-size: 7vmin;
 }
 
+.storeAddress {
+  font-size: 6vmin;
+}
+
 .well {
   padding: 25px;
   background-color: rgba(245, 245, 245, 0.7);
@@ -76,7 +80,7 @@ a:hover{
 }
 
 #lunchList {
-  height: 72px;
+  height: 140px;
   overflow: hidden;
   display: inline-block;
   text-align: left;
