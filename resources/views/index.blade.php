@@ -22,7 +22,9 @@
                                        data-toggle="modal"
                                        data-target="#mapModal"
                                        data-title="{{ $lunch->store_name }}"
-                                       data-address="{{ $lunch->address }}">{{ $lunch->address }}</a>
+                                       data-address="{{ $lunch->address }}">{{ $lunch->address }}
+                                        <img src="{{ asset('/public/img/icon_google_map.png') }}" style="width:30px"></a>
+
                                 </div>
                             </div>
                             @endforeach
