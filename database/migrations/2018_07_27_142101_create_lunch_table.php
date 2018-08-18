@@ -18,6 +18,7 @@ class CreateLunchTable extends Migration
             $table->string('store_name',20);
             $table->string('address',255);
             $table->string('menu',32);
+            $table->char('status',1)->default('Y');
             $table->timestamps();
         });
     }

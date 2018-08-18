@@ -19,6 +19,7 @@
                             <th class="column-title">店家</th>
                             <th class="column-title">地址</th>
                             <th class="column-title">新增時間</th>
+                            <th class="column-title">狀態</th>
                             <th class="column-title">動作</th>
                         </tr>
                     </thead>
@@ -30,6 +31,7 @@
                         <td class="a-center">{{ $lunch->store_name }}</td>
                         <td class="a-center">{{ $lunch->address }}</td>
                         <td class="a-center">{{ $lunch->created_at }}</td>
+                        <td class="a-center">{{ $lunch->status=='1' ? '開啟' : '關閉' }}</td>
                         <td class="a-center">
                             <a href="{{ route('lunch.item.edit',$lunch->id) }}" title="編輯" class="btn btn-info" >
                                  編輯

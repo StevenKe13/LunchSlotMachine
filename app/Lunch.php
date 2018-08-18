@@ -12,6 +12,7 @@ class Lunch extends Model
 
     protected $fillable = [
         "store_name",
-        "address"
+        "address",
+        "status"
     ];
 }

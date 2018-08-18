@@ -8,6 +8,10 @@
             <strong>地址</strong>
             {!! Form::text('address', null, array('placeholder' => '地址','class' => 'form-control','autocomplete' => 'off')) !!}
         </div>
+        <div class="form-group">
+            <strong>狀態</strong>
+            {!! Form::select('status', array('1' => '開啟', '0' => '關閉'), null, array('class' => 'form-control')); !!}
+        </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
