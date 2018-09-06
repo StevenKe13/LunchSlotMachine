@@ -17,6 +17,7 @@
                         <tr class="headings">
                             <th class="column-title">#</th>
                             <th class="column-title">店家</th>
+                            <th class="column-title">電話</th>
                             <th class="column-title">地址</th>
                             <th class="column-title">新增時間</th>
                             <th class="column-title">狀態</th>
@@ -29,6 +30,7 @@
                     <tr>
                         <td class="a-center">{{ ++$i }}</td>
                         <td class="a-center">{{ $lunch->store_name }}</td>
+                        <td class="a-center">{{ $lunch->tel }}</td>
                         <td class="a-center">{{ $lunch->address }}</td>
                         <td class="a-center">{{ $lunch->created_at }}</td>
                         <td class="a-center">{{ $lunch->status=='1' ? '開啟' : '關閉' }}</td>

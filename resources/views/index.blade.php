@@ -17,6 +17,7 @@
                             @foreach($lunchList as $lunch)
                             <div class="text-center lunch_item" data-key="{{ $lunch->id }}">
                                 <div class="storeName">{{ $lunch->store_name }}</div>
+                                <h3 class="storeTel">Tel: {{ $lunch->tel }}</h3>
                                 <div class="storeAddress">
                                     <a href="javascript:;"
                                        data-toggle="modal"
@@ -24,8 +25,8 @@
                                        data-title="{{ $lunch->store_name }}"
                                        data-address="{{ $lunch->address }}">{{ $lunch->address }}
                                         <img src="{{ asset('/public/img/icon_google_map.png') }}" style="width:30px"></a>
-
                                 </div>
+
                             </div>
                             @endforeach
                         </div>

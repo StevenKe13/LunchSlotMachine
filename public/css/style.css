@@ -16,6 +16,10 @@ body {
   font-size: 7vmin;
 }
 
+.storeTel {
+ font-size: 3vmin;
+}
+
 .storeAddress {
   font-size: 4vmin;
 }
@@ -80,7 +84,7 @@ a:hover{
 }
 
 #lunchList {
-  height: 140px;
+  height: 190px;
   overflow: hidden;
   display: inline-block;
   text-align: left;

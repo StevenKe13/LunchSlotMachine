@@ -88,13 +88,15 @@ class LunchController extends Controller
         $request->validate([
             'store_name' => 'required|max:60|unique:lunch',
             'address' => 'required|max:255',
-            'status' => 'require|in:1,0',
+            'status' => 'required|in:1,0',
+            'tel' => 'max:16',
         ], [
             'store_name.required' => '請填寫店家名稱',
             'store_name.max' => '店家名稱請小於60字元',
             'store_name.unique' => '店家名稱重複',
             'address.required' => '請填寫地址',
             'address.max' => '地址請小於255字元',
+            'tel.max' => '電話請小於16字元',
         ]);
         $this->lunch->create($request->all());
         return redirect()->route('lunch.item.index')
@@ -140,11 +142,13 @@ class LunchController extends Controller
             'store_name' => 'required|max:60',
             'address' => 'required|max:255',
             'status' => 'required|in:1,0',
+            'tel' => 'max:16',
         ], [
             'store_name.required' => '請填寫店家名稱',
             'store_name.max' => '店家名稱請小於60字元',
             'address.required' => '請填寫地址',
             'address.max' => '地址請小於255字元',
+            'tel.max' => '電話請小於16字元',
         ]);
 
         $this->lunch->findOrFail($id)->update($request->all());

@@ -5,6 +5,10 @@
             {!! Form::text('store_name', null, array('placeholder' => '店家名稱','class' => 'form-control','autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
+            <strong>電話</strong>
+            {!! Form::text('tel', null, array('placeholder' => '電話','class' => 'form-control','autocomplete' => 'off')) !!}
+        </div>
+        <div class="form-group">
             <strong>地址</strong>
             {!! Form::text('address', null, array('placeholder' => '地址','class' => 'form-control','autocomplete' => 'off')) !!}
         </div>
