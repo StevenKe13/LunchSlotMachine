@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Lunch;
+use App\Models\Lunch;
 use Illuminate\Http\Request;
 
 
