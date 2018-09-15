@@ -32,14 +32,23 @@ class LunchController extends Controller
             ->inRandomOrder()
             ->get();
 
-//        dd( $this->lunch->where('store_name','金花子')->first(['address']) );
-        //Like: SELECT `address` FROM lunch WHERE store_name ='金花子'
+//        dd( $this->lunch->where('store_name','金花子')->first(['id', 'address']) );
+//        Query: SELECT `id`,`address` FROM lunch WHERE store_name ='金花子'
 
+        /* first() */
+//        dd( Lunch::find(3) );
+//        dd( $this->lunch->where('id','3')->first() );
+//        $this->lunch->find('3');
+
+        /* get() */
+        /* 取得所有id=3的數組 沒什麼意義 因為是唯一值 */
 //        dd( $this->lunch->where('id','3')->get() );
-        //Equal: $this->lunch->find('3');
 
+        /* 取得所有status = 0的數組 */
 //        dd($this->lunch->where('status', '0')->get());
-        //取得所有status = 0的數組，如果只有唯一，get改用first即可
+
+        /* 取得所有status = 0的數組 只取 id , address*/
+//        dd($this->lunch->where('status', '0')->get(['id', 'address']));
 
         $data = [
             'pageName' => self::PAGENAME,
