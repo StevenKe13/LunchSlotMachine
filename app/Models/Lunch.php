@@ -11,9 +11,10 @@ class Lunch extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        "store_name",
-        "address",
-        "status",
-        "tel"
+        'store_name',
+        'address',
+        'status',
+        'tel',
+        'menu'
     ];
 }

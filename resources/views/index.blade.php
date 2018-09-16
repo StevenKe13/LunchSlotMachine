@@ -16,8 +16,16 @@
                         <div id="lunchList">
                             @foreach($lunchList as $lunch)
                             <div class="text-center lunch_item" data-key="{{ $lunch->id }}">
-                                <div class="storeName">{{ $lunch->store_name }}</div>
-                                <h3 class="storeTel">Tel: {{ $lunch->tel }}</h3>
+                                <div class="storeName">{{ $lunch->store_name }}
+                                    @if($lunch->menu)
+                                        &nbsp;<span style="font-size:12px"><a href="{{ asset('/public/upload/'.$lunch->menu) }}" target="_blank">[菜單]</a></span>
+                                    @endif
+                                </div>
+                                  <h3 class="storeTel">
+                                      @if($lunch->tel)
+                                          Tel: {{ $lunch->tel }}
+                                      @endif
+                                  </h3>
                                 <div class="storeAddress">
                                     <a href="javascript:;"
                                        data-toggle="modal"

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Lunch;
 use Illuminate\Http\Request;
+use Storage;
+use Illuminate\Support\Str;
+use Image;
 
 
 class LunchController extends Controller
@@ -12,13 +15,17 @@ class LunchController extends Controller
 
     private $lunch;
 
+    private $destinationPath;
+
     /**
      * LunchController constructor.
      * @param Lunch $lunch
      */
     public function __construct(Lunch $lunch)
     {
+//        parent::__construct();
         $this->lunch = $lunch;
+        $this->destinationPath = public_path('/upload');
     }
 
     /**
@@ -28,7 +35,7 @@ class LunchController extends Controller
      */
     public function index()
     {
-        $lunchList = $this->lunch->where('status','1')
+        $lunchList = $this->lunch->where('status', 'Y')
             ->inRandomOrder()
             ->get();
 
@@ -97,17 +104,57 @@ class LunchController extends Controller
         $request->validate([
             'store_name' => 'required|max:60|unique:lunch',
             'address' => 'required|max:255',
-            'status' => 'required|in:1,0',
+            'status' => 'required|in:Y,N',
             'tel' => 'max:16',
+            'menu' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
         ], [
             'store_name.required' => '請填寫店家名稱',
             'store_name.max' => '店家名稱請小於60字元',
             'store_name.unique' => '店家名稱重複',
             'address.required' => '請填寫地址',
             'address.max' => '地址請小於255字元',
+            'status.required' => '請選擇狀態',
             'tel.max' => '電話請小於16字元',
+            'menu.image' => '請上傳圖片類型的檔案',
         ]);
-        $this->lunch->create($request->all());
+
+        if ($request->hasFile('menu')) {
+            if ($request->file('menu')->isValid()) {
+                $extension = $request->file('menu')->getClientOriginalExtension();
+                $fileName = 'menu_' . date('ymdHis') . '_' . Str::random(3) . '.' . $extension;
+
+                /**
+                 * config/filesystem.php
+                 *
+                 * 本例儲存圖片位置為public 而非storage
+                 */
+
+                /* move上傳 */
+//                $request->file('menu')->move($this->destinationPath, $fileName);
+
+                /* store上傳 */
+//                $request->file('menu')->storeAs('upload', $fileName, 'public');
+
+                /* Storage上傳 */
+//                $image = $request->file('menu');
+//                $img = Image::make($image->getRealPath());
+//                $img->resize(120, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//                $img->stream();
+//                Storage::disk('local')->put('upload/' . $fileName, $img, 'public');
+
+                /* Image上傳 */
+                $image = $request->file('menu');
+                Image::make($image)->save($this->destinationPath . '/' . $fileName);
+
+            }
+        }
+
+        $data = $request->all();
+        $data['menu'] = $fileName;
+        $this->lunch->create($data);
+//        $this->lunch->create($request->all());
         return redirect()->route('lunch.item.index')
             ->with('success', '新增成功');
     }
@@ -150,17 +197,44 @@ class LunchController extends Controller
         $request->validate([
             'store_name' => 'required|max:60',
             'address' => 'required|max:255',
-            'status' => 'required|in:1,0',
+            'status' => 'required|in:Y,N',
             'tel' => 'max:16',
         ], [
             'store_name.required' => '請填寫店家名稱',
             'store_name.max' => '店家名稱請小於60字元',
             'address.required' => '請填寫地址',
             'address.max' => '地址請小於255字元',
+            'status.required' => '請選擇狀態',
             'tel.max' => '電話請小於16字元',
+            'menu.image' => '請上傳圖片類型的檔案',
         ]);
 
-        $this->lunch->findOrFail($id)->update($request->all());
+        $lunch = $this->lunch->findOrFail($id);
+
+        $data = $request->all();
+
+        if ($request->hasFile('menu')) {
+            if ($request->file('menu')->isValid()) {
+                $extension = $request->file('menu')->getClientOriginalExtension();
+                $fileName = 'menu_' . date('ymdHis') . '_' . Str::random(3) . '.' . $extension;
+
+                /* Image上傳 */
+                $image = $request->file('menu');
+                Image::make($image)->save($this->destinationPath . '/' . $fileName);
+
+                $oldfilename = $lunch->menu;
+
+                if(file_exists(public_path('/upload/' . $oldfilename))){
+                    unlink(public_path('/upload/' . $oldfilename));
+                }
+
+                $data['menu'] = $fileName;
+            }
+        }
+
+
+
+        $this->lunch->findOrFail($id)->update($data);
         return redirect()->route('lunch.item.index')
             ->with('success', '修改成功');
     }
@@ -173,6 +247,13 @@ class LunchController extends Controller
      */
     public function destroy($id)
     {
+        $lunch = $this->lunch->findOrFail($id);
+        $oldfilename = $lunch->menu;
+
+        if(file_exists(public_path('/upload/' . $oldfilename))){
+            unlink(public_path('/upload/' . $oldfilename));
+        }
+
         $this->lunch->findOrFail($id)->delete();
         return redirect()->route('lunch.item.index')
             ->with('success', '刪除成功');

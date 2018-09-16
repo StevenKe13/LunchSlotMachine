@@ -14,36 +14,45 @@
             <div class="table-responsive" style="background-color: #eeeeee;">
                 <table class="table table-striped jambo_table bulk_action table-hover">
                     <thead>
-                        <tr class="headings">
-                            <th class="column-title">#</th>
-                            <th class="column-title">店家</th>
-                            <th class="column-title">電話</th>
-                            <th class="column-title">地址</th>
-                            <th class="column-title">新增時間</th>
-                            <th class="column-title">狀態</th>
-                            <th class="column-title">動作</th>
-                        </tr>
+                    <tr class="headings">
+                        <th class="column-title">#</th>
+                        <th class="column-title">店家</th>
+                        <th class="column-title">電話</th>
+                        <th class="column-title">地址</th>
+                        <th class="column-title" style="width:100px">菜單</th>
+                        <th class="column-title">新增時間</th>
+                        <th class="column-title">狀態</th>
+                        <th class="column-title">動作</th>
+                    </tr>
                     </thead>
                     <tbody>
 
                     @foreach($lunchList as $lunch)
-                    <tr>
-                        <td class="a-center">{{ ++$i }}</td>
-                        <td class="a-center">{{ $lunch->store_name }}</td>
-                        <td class="a-center">{{ $lunch->tel }}</td>
-                        <td class="a-center">{{ $lunch->address }}</td>
-                        <td class="a-center">{{ $lunch->created_at }}</td>
-                        <td class="a-center">{{ $lunch->status=='1' ? '開啟' : '關閉' }}</td>
-                        <td class="a-center">
-                            <a href="{{ route('lunch.item.edit',$lunch->id) }}" title="編輯" class="btn btn-info" >
-                                 編輯
-                            </a>
-                            {!! Form::open(['method' => 'DELETE','route' => ['lunch.item.destroy', $lunch->id],'style'=>'display:inline']) !!}
-                            {!! Form::submit('刪除', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                        </td>
+                        <tr>
+                            <td class="a-center">{{ ++$i }}</td>
+                            <td class="a-center">{{ $lunch->store_name }}</td>
+                            <td class="a-center">{{ $lunch->tel }}</td>
+                            <td class="a-center">{{ $lunch->address }}</td>
+                            <td class="a-center">
+                                @if(($lunch->menu))
+                                    <a href="{{ asset('public/upload/'.$lunch->menu) }}" target="_blank">
+                                        <img src="{{ asset('public/upload/'.$lunch->menu) }}"
+                                             class="img-fluid img-thumbnail">
+                                    </a>
+                                @endif
+                            </td>
+                            <td class="a-center">{{ $lunch->created_at }}</td>
+                            <td class="a-center">{{ $lunch->status=='Y' ? '開啟' : '關閉' }}</td>
+                            <td class="a-center">
+                                <a href="{{ route('lunch.item.edit',$lunch->id) }}" title="編輯" class="btn btn-info">
+                                    編輯
+                                </a>
+                                {!! Form::open(['method' => 'DELETE','route' => ['lunch.item.destroy', $lunch->id],'style'=>'display:inline']) !!}
+                                {!! Form::submit('刪除', ['class' => 'btn btn-danger']) !!}
+                                {!! Form::close() !!}
+                            </td>
 
-                    </tr>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>
