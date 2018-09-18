@@ -25,7 +25,7 @@ class LunchController extends Controller
     {
 //        parent::__construct();
         $this->lunch = $lunch;
-        $this->destinationPath = public_path('/upload');
+        $this->destinationPath = public_path('upload/');
     }
 
     /**
@@ -118,6 +118,8 @@ class LunchController extends Controller
             'menu.image' => '請上傳圖片類型的檔案',
         ]);
 
+        $data = $request->all();
+
         if ($request->hasFile('menu')) {
             if ($request->file('menu')->isValid()) {
                 $extension = $request->file('menu')->getClientOriginalExtension();
@@ -146,13 +148,13 @@ class LunchController extends Controller
 
                 /* Image上傳 */
                 $image = $request->file('menu');
-                Image::make($image)->save($this->destinationPath . '/' . $fileName);
+                Image::make($image)->save($this->destinationPath . $fileName);
 
+                $data['menu'] = $fileName;
             }
         }
 
-        $data = $request->all();
-        $data['menu'] = $fileName;
+
         $this->lunch->create($data);
 //        $this->lunch->create($request->all());
         return redirect()->route('lunch.item.index')
@@ -220,18 +222,19 @@ class LunchController extends Controller
 
                 /* Image上傳 */
                 $image = $request->file('menu');
-                Image::make($image)->save($this->destinationPath . '/' . $fileName);
+                Image::make($image)->save($this->destinationPath . $fileName);
 
                 $oldfilename = $lunch->menu;
 
-                if(file_exists(public_path('/upload/' . $oldfilename))){
-                    unlink(public_path('/upload/' . $oldfilename));
+                if (!is_null($oldfilename)) {
+                    if (file_exists(public_path('upload/' . $oldfilename))) {
+                        unlink(public_path('upload/' . $oldfilename));
+                    }
                 }
 
                 $data['menu'] = $fileName;
             }
         }
-
 
 
         $this->lunch->findOrFail($id)->update($data);
@@ -250,8 +253,10 @@ class LunchController extends Controller
         $lunch = $this->lunch->findOrFail($id);
         $oldfilename = $lunch->menu;
 
-        if(file_exists(public_path('/upload/' . $oldfilename))){
-            unlink(public_path('/upload/' . $oldfilename));
+        if (!is_null($oldfilename)) {
+            if (file_exists(public_path('upload/' . $oldfilename))) {
+                unlink(public_path('upload/' . $oldfilename));
+            }
         }
 
         $this->lunch->findOrFail($id)->delete();
