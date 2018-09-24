@@ -15,19 +15,26 @@ Route::group([
     Route::get('/', 'LunchController@list')->name('lunch.item.index');
 
     // 新增
-    Route::get('create', 'LunchController@create')->name('lunch.item.create');
+    Route::get('/create', 'LunchController@create')->name('lunch.item.create');
 
     // 儲存
     Route::post('/', 'LunchController@store')->name('lunch.item.store');
 
     // 編輯
-    Route::get('{id}/edit', 'LunchController@edit')->name('lunch.item.edit');
+    Route::get('/{id}/edit', 'LunchController@edit')->name('lunch.item.edit');
 
     // 更新
-    Route::patch('{id}', 'LunchController@update')->name('lunch.item.update');
+    Route::patch('/{id}', 'LunchController@update')->name('lunch.item.update');
 
     // 刪除
-    Route::delete('{id}', 'LunchController@destroy')->name('lunch.item.destroy');
+    Route::delete('/{id}', 'LunchController@destroy')->name('lunch.item.destroy');
+
+    // 顯示
+    Route::get('/{id}/show', 'LunchController@show')->name('lunch.item.show');
+
+    // 修改狀態
+    Route::post('/changeStatus', 'LunchController@changeStatus')->name('lunch.item.changeStatus');
+
 });
 
 

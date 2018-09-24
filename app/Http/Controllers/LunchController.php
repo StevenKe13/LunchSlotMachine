@@ -167,9 +167,12 @@ class LunchController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $lunchDatas = $this->lunch->findOrFail($request->id);
+//        $lunchDatas = array('msg'=>'success');
+
+        return json_encode($lunchDatas, true);
     }
 
     /**
@@ -265,11 +268,16 @@ class LunchController extends Controller
     }
 
 
-    public function ajaxGetAddress(Request $request)
+//    public function ajaxGetAddress(Request $request)
+//    {
+//        $lunchDatas = $this->lunch->findOrFail($request->id);
+//
+//        return json_decode($lunchDatas, true);
+//    }
+
+    public function changeStatus(Request $request)
     {
-
-        $lunchDatas = $this->lunch->findOrFail($request->id);
-
-        return json_decode($lunchDatas, true);
+        $status = $request->status_mode == 'turnOn' ? 'Y' : 'N';
+        $this->lunch->findOrFail($request->id)->update(['status' => $status]);
     }
 }
