@@ -17,32 +17,6 @@
         const btn = document.querySelector('#actBtn');
         const el = document.querySelector('#lunchList');
         const machine = new SlotMachine(el);
-        /*
-        var ajaxGetAddress = function(active){
-
-            var targetKey = active + 1;
-
-            $('.lunch_item').eq(targetKey).addClass('target');
-
-            var key = $('.target').data('key');
-
-            $.ajax({
-                url: './ajaxGetAddress',
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: key
-                },
-                success: function(res) {
-                    console.log(res);
-                    $('#printAddress h2').html(res.address);
-                },
-                error: function(xhr) {
-                    console.log('Ajax request 發生錯誤');
-                }
-            });
-        };
-        */
 
         $(btn).on('click', function () {
 
@@ -58,24 +32,21 @@
         });
         /* 拉霸 結束 */
 
-        $('#mapModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var title = button.data('title');
-            var address = button.data('address');
+        $('#mapModal').on('show.bs.modal', function (e) {
+            var target = $(e.relatedTarget);
+            var title = target.data('title');
+            var address = target.data('address');
             var modal = $(this);
             modal.find('.modal-title').text(title);
             CodeAddress(address);
         });
 
-        // $("#mapModal").on("show.bs.modal", function(e) {
-        //     // var id = $(e.relatedTarget).data('target-id');
-        //     // $.get( "/controller/" + id, function( data ) {
-        //     //     $(".modal-body").html(data.html);
-        //     // });
-        //     console.log('open modal');
-        //
-        // });
-
+        $('#menuModal').on('show.bs.modal', function (e) {
+            var target = $(e.relatedTarget);
+            var modal = $(this);
+            var menu = target.data('menu');
+            modal.find('.modal-body').html('<img src="public/upload/'+menu+'" class="img-thumbnail">');
+        });
 
     });
 
@@ -127,6 +98,7 @@
         // });
     }
 
+    /*
     function Distance(start, end) {
         var request = {
             origin: start,
@@ -147,9 +119,8 @@
                 var dist = parseInt(parseFloat(strTmp) * 1000).toString();
             }
         });
-
-
     }
+    */
 
 
 </script>

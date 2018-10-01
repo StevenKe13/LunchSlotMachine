@@ -80,7 +80,7 @@ class LunchController extends Controller
             'lunchList' => $lunchList,
         ];
 
-        return view('list', $data)->with('i');
+        return view('admin.list', $data)->with('i');
     }
 
     /**
@@ -90,7 +90,7 @@ class LunchController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('admin.create');
     }
 
     /**
@@ -187,7 +187,7 @@ class LunchController extends Controller
             'pageName' => self::PAGENAME,
             'lunch' => $this->lunch->findOrFail($id)
         ];
-        return view('edit', $data);
+        return view('admin.edit', $data);
     }
 
     /**

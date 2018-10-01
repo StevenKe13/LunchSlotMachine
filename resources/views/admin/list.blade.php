@@ -12,7 +12,7 @@
                 </div>
             @endif
             <div class="table-responsive" style="background-color: #eeeeee;">
-                <table class="table table-striped jambo_table bulk_action table-hover">
+                <table class="table table-striped table-hover table-condensed">
                     <thead>
                     <tr class="headings">
                         <th class="column-title">#</th>

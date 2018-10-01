@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('admin.layout.master')
 
 @section('content')
 
@@ -13,7 +13,7 @@
         @include('components.validationErrorMessage')
 
         {!! Form::model($lunch, ['method'=>'PATCH', 'route'=>['lunch.item.update', $lunch->id], 'files'=>true ]) !!}
-        @include('form')
+        @include('admin.layout.form')
         {!! Form::close() !!}
     </div>
 

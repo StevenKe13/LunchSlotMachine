@@ -24,7 +24,7 @@
                     _token: '{{ csrf_token() }}',
                 },
                 success: function (res) {
-                    var menu = res.menu ? './public/upload/' + res.menu : './public/upload/default-image.png';
+                    var menu = res.menu ? '../public/upload/' + res.menu : '../public/upload/default-image.png';
 
                     modal.find('.modal-title').text(res.store_name);
                     modal.find('.modal-tel').text(res.tel);

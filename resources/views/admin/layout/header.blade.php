@@ -10,6 +10,6 @@
 <style>
     /* 暫時先用這個底色 之後再改'*/
     body{
-        background-color: darkseagreen;
+        background-color: rgba(70, 159, 219, 0.52);
     }
 </style>
